@@ -1,0 +1,6 @@
+.fb-row {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	margin-inline: 1rem;
+}
