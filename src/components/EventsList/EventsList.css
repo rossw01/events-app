@@ -1,6 +1,8 @@
 .fb-row {
-	display: flex;
-	flex-direction: row;
-	gap: 1rem;
-	margin-inline: 1rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 110px;
+  margin-inline: 1rem;
 }
