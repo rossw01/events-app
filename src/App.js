@@ -22,7 +22,7 @@ function App() {
 				path="/"
 				element={
 					<div className="App">
-						<Header />
+						<Header token={token} />
 						<EventsList client={client} />
 					</div>
 				}
