@@ -68,60 +68,63 @@ const EventsList = (props) => {
 	};
 
 	return (
-		<div className="fb-row">
-			{buildEvents()}
-			<form onSubmit={(event) => submitHandler(event)}>
-				<label>
-					name:
-					<input
-						type="text"
-						name="name"
-						onChange={(event) => handleChange(event)}
-					/>
-				</label>
-				<label>
-					description:
-					<input
-						type="text"
-						name="description"
-						onChange={(event) => handleChange(event)}
-					/>
-				</label>
-				<label>
-					location:
-					<input
-						type="text"
-						name="location"
-						onChange={(event) => handleChange(event)}
-					/>
-				</label>
-				<label>
-					date:
-					<input
-						type="text"
-						name="date"
-						onChange={(event) => handleChange(event)}
-					/>
-				</label>
-				<label>
-					time:
-					<input
-						type="text"
-						name="time"
-						onChange={(event) => handleChange(event)}
-					/>
-				</label>
-				<label>
-					image:
-					<input
-						type="text"
-						name="image"
-						onChange={(event) => handleChange(event)}
-					/>
-				</label>
-				<button type="submit">Submit</button>
-			</form>
-		</div>
+		<>
+			<h1 className="title">🎊 Upcoming Events:</h1>
+			<div className="fb-row">
+				{buildEvents()}
+				<form onSubmit={(event) => submitHandler(event)}>
+					<label>
+						name:
+						<input
+							type="text"
+							name="name"
+							onChange={(event) => handleChange(event)}
+						/>
+					</label>
+					<label>
+						description:
+						<input
+							type="text"
+							name="description"
+							onChange={(event) => handleChange(event)}
+						/>
+					</label>
+					<label>
+						location:
+						<input
+							type="text"
+							name="location"
+							onChange={(event) => handleChange(event)}
+						/>
+					</label>
+					<label>
+						date:
+						<input
+							type="text"
+							name="date"
+							onChange={(event) => handleChange(event)}
+						/>
+					</label>
+					<label>
+						time:
+						<input
+							type="text"
+							name="time"
+							onChange={(event) => handleChange(event)}
+						/>
+					</label>
+					<label>
+						image:
+						<input
+							type="text"
+							name="image"
+							onChange={(event) => handleChange(event)}
+						/>
+					</label>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
+		</>
 	);
 };
 
