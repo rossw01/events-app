@@ -27,7 +27,7 @@ const EventsList = (props) => {
 		event.preventDefault();
 		let result;
 		if (formValues) {
-			console.log("1");
+			// TODO: is this await needed???
 			result = await props.client.addEvent(
 				formValues.name,
 				formValues.description,
