@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
@@ -6,8 +7,14 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 
 function App() {
-	// const [token, changeToken] = useState(window.localStorage.getItem("token"));
+	const [token, changeToken] = useState(window.localStorage.getItem("token"));
 	const client = new ApiClient();
+
+	const loggedIn = (token) => {
+		window.localStorage.setItem("token", token);
+		changeToken(token);
+	};
+
 	return (
 		<Routes>
 			{/* Home Page */}
@@ -26,7 +33,7 @@ function App() {
 				element={
 					<>
 						<Header />
-						<Login client={client} />
+						<Login client={client} loggedIn={(token) => loggedIn(token)} />
 					</>
 				}
 			></Route>

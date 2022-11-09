@@ -1,27 +1,35 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
 	const [loginDetails, setLoginDetails] = useState({
-		username: "",
-		password: "",
+		username: undefined,
+		password: undefined,
 	});
 
-	// const submitHandler = (event) => {
-	// 	event.preventDefault();
-	//     let result;
-	//     if (loginDetails) {
-	// 		result = props.client.addEvent(
-	// 			formValues.name,
-	// 			formValues.description,
-	// 			formValues.location,
-	// 			formValues.date,
-	// 			formValues.time,
-	// 			formValues.image
-	// 		);
-	// 	} else {
-	// 		result = undefined;
-	// 	}
-	// };
+	const navigateTo = useNavigate();
+
+	const submitHandler = async (event) => {
+		event.preventDefault();
+		try {
+			const res = await props.client.login(
+				loginDetails.username,
+				loginDetails.password
+			);
+			// alert("Successfimage.pngul login");
+			props.loggedIn(res.data.token);
+			alert("Correct Login");
+			navigateTo("/");
+
+			// let history = useHistory();
+			// history.push("/");
+
+			// return <Navigate to="/" />;
+			// TODO: return the token to props.loggedIn
+		} catch (error) {
+			alert("Incorrect details");
+		}
+	};
 
 	// Handles input fields being changed, then updates loginDetails state with setLoginDetails
 	const handleChange = (event) => {
@@ -36,8 +44,7 @@ const Login = (props) => {
 
 	return (
 		<div>
-			{/* <form onSubmit={(event) => submitHandler(event)}> */}
-			<form>
+			<form onSubmit={(event) => submitHandler(event)}>
 				<label>
 					Username:
 					<input
@@ -54,6 +61,7 @@ const Login = (props) => {
 						onChange={(event) => handleChange(event)}
 					/>
 				</label>
+				<button type="submit">Log in</button>
 			</form>
 		</div>
 	);
