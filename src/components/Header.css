@@ -29,6 +29,7 @@ body {
 
 .header-btn {
 	display: flex;
+	height: 100%;
 	align-items: center;
 	border-radius: 30px;
 	gap: 0.5rem;
@@ -49,6 +50,26 @@ body {
 	transform: scale(108%);
 } 
 TODO: If scaling buttons is wanted by the others, re-add this*/
+.new {
+	transition: transform 0.3s ease-in-out;
+}
+
+.new:hover {
+	background-color: #00d42e;
+	border: 2.5px solid #009721;
+	transform: scale(105%);
+}
+
+.new > .spin1 {
+	display: block; /* removes bottom margin/whitespace */
+	-webkit-transition: -webkit-transform 0.8s ease-in-out;
+	transition: transform 0.5s ease-in-out;
+}
+
+.new:hover > .spin1 {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
 
 .profile:hover {
 	background-color: #00a4dc;

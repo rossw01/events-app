@@ -15,6 +15,12 @@ const Header = (props) => {
 			</Link>
 			{props.token ? (
 				<div className="buttons">
+					<Link to="/new" className="no-td">
+						<button className="header-btn new">
+							<span className="spin1">🥳</span>
+							<span className="header-button-text">New Event</span>
+						</button>
+					</Link>
 					<Link to="/profile" className="no-td">
 						<button className="header-btn profile">
 							<FaUser />
