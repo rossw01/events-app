@@ -1,24 +1,31 @@
 import React from "react";
+import { FaDoorOpen, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = (props) => {
 	return (
 		<div className="header">
-			<a>
+			<Link to="/">
 				<img
 					className="header-logo"
 					src={require("./event-it-logo.png")}
 					alt={"event it logo"}
 				/>
-			</a>
+			</Link>
 			{props.token ? (
 				<div className="buttons">
-					<Link to="/profile">
-						<button className="register-btn">My Profile</button>
+					<Link to="/profile" className="no-td">
+						<button className="header-btn profile">
+							<FaUser />
+							<span className="header-button-text">My Profile</span>
+						</button>
 					</Link>
-					<Link to="/logout">
-						<button className="register-btn">Log out</button>
+					<Link to="/logout" className="no-td">
+						<button className="header-btn logout">
+							<FaDoorOpen />
+							Log out
+						</button>
 					</Link>
 				</div>
 			) : (

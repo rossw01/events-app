@@ -1,6 +1,11 @@
+body {
+	margin: 0;
+	padding: 0 !important;
+}
+
 .header {
+	margin: 1rem;
 	width: auto;
-	margin-inline: 1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -13,24 +18,67 @@
 	width: 200px;
 }
 
-.login-btn,
-.register-btn {
-	padding: 10px;
-	background-color: white;
-	width: 100px;
-	font-size: 16px;
-	font-weight: 700;
+.no-td {
+	text-decoration: none;
 }
+
 .login-btn {
 	background-color: #00a4dc;
 	border-color: transparent;
 }
 
-.register-btn {
-	border: 1px solid black;
+.header-btn {
+	display: flex;
+	align-items: center;
+	border-radius: 30px;
+	gap: 0.5rem;
+	display: flex;
+	padding: 0.5rem;
+	font-size: 1rem;
+	font-weight: bold;
+	border: 2.5px solid black;
+	transition: all 0.1s ease-in-out;
+}
+
+.header-btn:hover {
+	cursor: pointer;
+	color: white;
+}
+
+/* .header-btn:hover {
+	transform: scale(108%);
+} 
+TODO: If scaling buttons is wanted by the others, re-add this*/
+
+.profile:hover {
+	background-color: #00a4dc;
+	border: 2.5px solid #007fa9;
+}
+
+.logout:hover {
+	background-color: #b70018;
+	border: 2.5px solid #7c0011;
 }
 
 .buttons {
+	margin-right: 1rem;
 	display: flex;
 	gap: 1rem;
+	text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+	.buttons {
+		margin-right: 0;
+	}
+	.header-logo {
+		margin-inline: 0;
+		width: 100%;
+	}
+	.header {
+		flex-direction: column;
+		padding: 0px;
+		margin: 5px;
+		top: 0;
+	}
 }
