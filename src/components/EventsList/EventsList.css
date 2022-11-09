@@ -1,6 +1,22 @@
+.title {
+	display: flex;
+	justify-content: center;
+	margin: 0 1rem 2rem 1rem;
+}
+
 .fb-row {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 	gap: 1rem;
+	margin-inline: 1.5rem;
+}
+
+@media screen and (max-width: 600px) {
+	.title {
+		margin-bottom: 1.5rem;
+	}
+	.fb-row {
+		margin-inline: 0;
+	}
 }
