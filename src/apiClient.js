@@ -29,12 +29,12 @@ export class ApiClient {
 		});
 	}
 
-	async login(userName, password) {
+	async login(username, password) {
 		return axios({
 			method: "post",
-			url: `${url}auth`,
+			url: `${url}/auth`,
 			data: {
-				userName,
+				username,
 				password,
 			},
 		}).catch((error) => {
@@ -56,6 +56,13 @@ export class ApiClient {
 			date,
 			time,
 			image,
+		});
+	}
+
+	addUser(username, password) {
+		return this.authenticatedCall("post", `${url}register`, {
+			username,
+			password,
 		});
 	}
 
