@@ -1,7 +1,6 @@
 .header {
-	width: 95%;
-	/* position: fixed; */
-	z-index: 10;
+	width: auto;
+	margin-inline: 1rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -13,12 +12,12 @@
 .header-logo {
 	width: 200px;
 }
+
 .login-btn,
 .register-btn {
 	padding: 10px;
 	background-color: white;
 	width: 100px;
-	margin-left: 20px;
 	font-size: 16px;
 	font-weight: 700;
 }
@@ -26,6 +25,12 @@
 	background-color: #85c03f;
 	border-color: transparent;
 }
+
 .register-btn {
 	border: 1px solid black;
+}
+
+.buttons {
+	display: flex;
+	gap: 1rem;
 }
