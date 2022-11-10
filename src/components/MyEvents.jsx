@@ -9,6 +9,7 @@ const MyEvents = (props) => {
 
 	const [events, setEvents] = useState(undefined);
 	const [username, setUsername] = useState(undefined);
+	const [selected, setSelected] = useState(undefined);
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -22,7 +23,6 @@ const MyEvents = (props) => {
 	}, [props.client, props.token]);
 
 	const buildEvents = () => {
-		console.log(username);
 		let existingEvents = events
 			?.sort((a, b) =>
 				new Date(Date.parse(a.date)).getTime() >
@@ -35,25 +35,46 @@ const MyEvents = (props) => {
 			})
 			.map((event, i) => {
 				return (
-					<Event
+					<div
 						key={i}
-						name={event.name}
-						description={event.description}
-						location={event.location}
-						date={event.date}
-						time={event.time}
-						image={event.image}
-						id={event._id}
-						username={event.username}
-					/>
+						onClick={() => {
+							setSelected(i);
+							console.log(i, selected, i === selected);
+						}}
+						className={`${i === selected ? "card-selected" : ""}`}
+					>
+						<Event
+							key={i}
+							name={event.name}
+							description={event.description}
+							location={event.location}
+							date={event.date}
+							time={event.time}
+							image={event.image}
+							id={event._id}
+							isSelected={i === selected}
+							username={event.username}
+						/>
+					</div>
 				);
 			});
+		// TODO: can we return something else if length of existingEvents is 0?
 		return existingEvents;
 	};
 
 	return (
 		<>
-			<div className="fb-row event-view">{buildEvents()}</div>
+			<h2>My Events:</h2>
+			<div className="fb-row event-view">
+				{/* {buildEvents() > 0 ? (
+					buildEvents()
+				) : (
+					<h2>
+						🥲 Nothing to see here yet - Consider creating your own event!
+					</h2>
+				)} */}
+				{buildEvents()}
+			</div>
 		</>
 	);
 };

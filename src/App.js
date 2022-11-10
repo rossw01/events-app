@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
 import EventsList from "./components/EventsList/EventsList";
@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import MyEvents from "./components/MyEvents";
 import NewEvent from "./components/NewEvent";
+import Register from "./components/Register";
 
 function App() {
 	const [token, changeToken] = useState(window.localStorage.getItem("token"));
@@ -63,6 +64,15 @@ function App() {
 					<>
 						<Header changeToken={changeToken} token={token} />
 						<MyEvents client={client} token={token} />
+					</>
+				}
+			/>
+			<Route
+				path="/register"
+				element={
+					<>
+						<Header changeToken={changeToken} token={token} />
+						<Register client={client} />
 					</>
 				}
 			/>
