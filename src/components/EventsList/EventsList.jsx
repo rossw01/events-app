@@ -28,7 +28,6 @@ const EventsList = (props) => {
 					: -1
 			)
 			.filter((event) => {
-				console.log(search);
 				return event.name.includes(search) || event.location.includes(search);
 			})
 			.map((event, i) => {
