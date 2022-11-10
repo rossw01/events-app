@@ -71,7 +71,7 @@ export class ApiClient {
 	}
 
 	addUser(username, password) {
-		return this.authenticatedCall("post", `${url}register`, {
+		return this.authenticatedCall("post", `${url}/register`, {
 			username,
 			password,
 		});

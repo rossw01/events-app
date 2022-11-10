@@ -58,6 +58,7 @@ const NewEvent = (props) => {
 	const submitHandler = async (event) => {
 		let username = (await props.client.getUserByToken(props.token)).data[0]
 			.username;
+		console.log(username);
 		try {
 			await props.client.addEvent(
 				eventDetails.name,

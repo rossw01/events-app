@@ -4,7 +4,7 @@ import "./Event.css";
 
 const Event = (props) => {
 	return (
-		<div className="card">
+		<div className={`card ${props.isSelected ? "selected" : ""}`}>
 			<img className="card-img" src={props.image} alt={props.name} />
 			<h3 className="card-name">{props.name}</h3>
 			<p>{props.description}</p>
