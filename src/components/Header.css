@@ -81,6 +81,11 @@ TODO: If scaling buttons is wanted by the others, re-add this*/
 	border: 2.5px solid #7c0011;
 }
 
+.register:hover {
+	background-color: #9d00d1;
+	border: 2.5px solid #650086;
+}
+
 .buttons {
 	margin-right: 1rem;
 	display: flex;

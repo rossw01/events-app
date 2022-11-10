@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = (props) => {
+	const logout = (changeToken) => {
+		window.localStorage.removeItem("token");
+		changeToken(undefined);
+		// TODO: Nav back to root page
+	};
+
 	return (
 		<div className="header">
 			<Link to="/">
@@ -21,14 +27,17 @@ const Header = (props) => {
 							<span className="header-button-text">New Event</span>
 						</button>
 					</Link>
-					<Link to="/profile" className="no-td">
+					<Link to="/my-events" className="no-td">
 						<button className="header-btn profile">
 							<FaUser />
 							<span className="header-button-text">My Profile</span>
 						</button>
 					</Link>
-					<Link to="/logout" className="no-td">
-						<button className="header-btn logout">
+					<Link className="no-td">
+						<button
+							className="header-btn logout"
+							onClick={() => logout(props.changeToken)}
+						>
 							<FaDoorOpen />
 							Log out
 						</button>
@@ -36,10 +45,10 @@ const Header = (props) => {
 				</div>
 			) : (
 				<div className="buttons">
-					<Link to="/login">
-						<button className="login-btn">Login</button>
+					<Link to="/login" className="no-td">
+						<button className="header-btn profile">Login</button>
 					</Link>
-					<button className="register-btn ">Register</button>
+					<button className="header-btn register">Register</button>
 				</div>
 			)}
 		</div>

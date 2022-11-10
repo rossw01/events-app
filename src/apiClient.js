@@ -28,6 +28,10 @@ export class ApiClient {
 		});
 	}
 
+	async getUserByToken(token) {
+		return this.authenticatedCall("get", `${url}/user/${token}`);
+	}
+
 	// Differences from original code start here
 	getEvents() {
 		return this.authenticatedCall("get", url);
@@ -46,8 +50,15 @@ export class ApiClient {
 		});
 	}
 
+	async getUsername(token) {
+		return axios({
+			method: "get",
+			url: `${url}/user/`,
+		});
+	}
+
 	// Gets 1 even based on location parameter
-	addEvent(name, description, location, date, time, image, user) {
+	addEvent(name, description, location, date, time, image, username) {
 		return this.authenticatedCall("post", url, {
 			name,
 			description,
@@ -55,7 +66,7 @@ export class ApiClient {
 			date,
 			time,
 			image,
-			user,
+			username,
 		});
 	}
 
