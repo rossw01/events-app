@@ -1,8 +1,30 @@
+/*
+how i broke git repo
+I commited changes to NewEvent.jsx
+pulled to main
+
+i noticed I'd not pulled changes to Header.jsx to main
+I pulled
+
+then did checkout main to make sure things were working
+
+Local files were set to 1st commit, repo was set to 1st commit
+
+I cloned newest branch, header was updated and NewEvent was updated (looked perfect on my end)
+
+I created new issue to try fix everything and get main back to how it was on my local machine
+Main remained same as 1st commit, and new branch remained same as first commit
+
+didnt work
+wtf am i doing lol
+
+*/
+
 import React, { useState } from "react";
 import Event from "./EventsList/Event";
 import "./NewEvent.css";
 
-const NewEvent = () => {
+const NewEvent = (props) => {
 	// I defined these here so we can set eventDetails with them when user backspaces their form input
 	let defaultName = "Example Event Name";
 	let defaultDescription =
@@ -31,6 +53,25 @@ const NewEvent = () => {
 			newDate = today;
 		}
 		return newDate.toDateString();
+	};
+
+	const submitHandler = async (event) => {
+		try {
+			await props.client.addEvent(
+				eventDetails.name,
+				eventDetails.description,
+				eventDetails.location,
+				eventDetails.date,
+				eventDetails.time,
+				eventDetails.image,
+				props.token
+			);
+			console.log("Event added successfully!");
+			// TODO: Create Toastr notification
+		} catch (e) {
+			alert("Failed to create account.");
+			console.log(e.errors);
+		}
 	};
 
 	const handleChange = (event) => {
@@ -121,6 +162,9 @@ const NewEvent = () => {
 							onChange={(event) => handleChange(event)}
 						></input>
 					</label>
+					<button type="submit" onClick={() => submitHandler()}>
+						Submit
+					</button>
 				</form>
 			</div>
 			{/* Could try using a ternary to check if state is left blank */}

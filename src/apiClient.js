@@ -48,7 +48,7 @@ export class ApiClient {
 	}
 
 	// Gets 1 even based on location parameter
-	addEvent(name, description, location, date, time, image) {
+	addEvent(name, description, location, date, time, image, user) {
 		return this.authenticatedCall("post", url, {
 			name,
 			description,
@@ -56,6 +56,7 @@ export class ApiClient {
 			date,
 			time,
 			image,
+			user,
 		});
 	}
 

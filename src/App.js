@@ -43,7 +43,7 @@ function App() {
 				element={
 					<>
 						<Header />
-						<NewEvent client={client} />
+						<NewEvent client={client} token={token} />
 					</>
 				}
 			/>
