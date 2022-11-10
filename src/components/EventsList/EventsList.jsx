@@ -9,6 +9,7 @@ const EventsList = (props) => {
 	// console.log(events);
 
 	const [events, setEvents] = useState(undefined);
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -19,7 +20,6 @@ const EventsList = (props) => {
 	}, [props.client]);
 
 	const buildEvents = () => {
-		console.log(events);
 		let existingEvents = events
 			?.sort((a, b) =>
 				new Date(Date.parse(a.date)).getTime() >
@@ -27,6 +27,9 @@ const EventsList = (props) => {
 					? 1
 					: -1
 			)
+			.filter((event) => {
+				return event.name.includes(search) || event.location.includes(search);
+			})
 			.map((event, i) => {
 				return (
 					<Event
@@ -46,6 +49,9 @@ const EventsList = (props) => {
 
 	return (
 		<>
+			<form>
+				<input onChange={(event) => setSearch(event.target.value)} />
+			</form>
 			<div className="fb-row event-view">{buildEvents()}</div>
 		</>
 	);
