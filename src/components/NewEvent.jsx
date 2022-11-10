@@ -56,6 +56,8 @@ const NewEvent = (props) => {
 	};
 
 	const submitHandler = async (event) => {
+		let username = (await props.client.getUserByToken(props.token)).data[0]
+			.username;
 		try {
 			await props.client.addEvent(
 				eventDetails.name,
@@ -64,13 +66,13 @@ const NewEvent = (props) => {
 				eventDetails.date,
 				eventDetails.time,
 				eventDetails.image,
-				props.token
+				username
 			);
 			console.log("Event added successfully!");
 			// TODO: Create Toastr notification
 		} catch (e) {
 			alert("Failed to create account.");
-			console.log(e.errors);
+			console.log(e.message);
 		}
 	};
 
@@ -81,7 +83,6 @@ const NewEvent = (props) => {
 		if (fieldName === "date") {
 			fieldValue = dateFixer(fieldValue);
 		}
-
 		const newState = { ...eventDetails };
 
 		// When the user backspaces their input, reset to default value

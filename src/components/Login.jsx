@@ -28,6 +28,7 @@ const Login = (props) => {
 			// TODO: return the token to props.loggedIn
 		} catch (error) {
 			alert("Incorrect details");
+			console.log(error.message);
 		}
 	};
 

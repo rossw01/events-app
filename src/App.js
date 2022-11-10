@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { ApiClient } from "./apiClient";
 import "./App.css";
 import EventsList from "./components/EventsList/EventsList";
 import Header from "./components/Header";
 import Login from "./components/Login";
+import MyEvents from "./components/MyEvents";
 import NewEvent from "./components/NewEvent";
 
 function App() {
@@ -23,7 +24,16 @@ function App() {
 				path="/"
 				element={
 					<div className="App">
-						<Header token={token} />
+						<Header changeToken={changeToken} token={token} />
+						<h1
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								margin: "0 1rem 2rem 1rem",
+							}}
+						>
+							🎊 Upcoming Events:
+						</h1>
 						<EventsList client={client} token={token} />
 					</div>
 				}
@@ -33,7 +43,7 @@ function App() {
 				path="/login"
 				element={
 					<>
-						<Header />
+						<Header changeToken={changeToken} token={token} />
 						<Login client={client} loggedIn={(token) => loggedIn(token)} />
 					</>
 				}
@@ -42,8 +52,17 @@ function App() {
 				path="/new"
 				element={
 					<>
-						<Header />
+						<Header changeToken={changeToken} token={token} />
 						<NewEvent client={client} token={token} />
+					</>
+				}
+			/>
+			<Route
+				path="/my-events"
+				element={
+					<>
+						<Header changeToken={changeToken} token={token} />
+						<MyEvents client={client} token={token} />
 					</>
 				}
 			/>
