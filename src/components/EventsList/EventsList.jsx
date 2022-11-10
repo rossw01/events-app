@@ -70,7 +70,7 @@ const EventsList = (props) => {
 	return (
 		<>
 			<h1 className="title">🎊 Upcoming Events:</h1>
-			<div className="fb-row">
+			<div className="fb-row event-view">
 				{buildEvents()}
 				<form onSubmit={(event) => submitHandler(event)}>
 					<label>

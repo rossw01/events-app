@@ -6,6 +6,15 @@
 
 .fb-row {
 	display: flex;
+	flex-direction: row;
+}
+
+.fb-col {
+	display: flex;
+	flex-direction: column;
+}
+
+.event-view {
 	justify-content: space-around;
 	flex-wrap: wrap;
 	gap: 1rem;

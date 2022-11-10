@@ -5,6 +5,7 @@ import "./App.css";
 import EventsList from "./components/EventsList/EventsList";
 import Header from "./components/Header";
 import Login from "./components/Login";
+import NewEvent from "./components/NewEvent";
 
 function App() {
 	const [token, changeToken] = useState(window.localStorage.getItem("token"));
@@ -26,7 +27,7 @@ function App() {
 						<EventsList client={client} />
 					</div>
 				}
-			></Route>
+			/>
 			{/* Login Page */}
 			<Route
 				path="/login"
@@ -36,7 +37,16 @@ function App() {
 						<Login client={client} loggedIn={(token) => loggedIn(token)} />
 					</>
 				}
-			></Route>
+			/>
+			<Route
+				path="/new"
+				element={
+					<>
+						<Header />
+						<NewEvent client={client} />
+					</>
+				}
+			/>
 		</Routes>
 	);
 }

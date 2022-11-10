@@ -1,0 +1,6 @@
+.add-event {
+	display: flex;
+	width: auto;
+	justify-content: center;
+	gap: 5rem;
+}
