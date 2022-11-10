@@ -81,14 +81,15 @@ export class ApiClient {
 		return this.authenticatedCall("delete", `${url}${_id}`);
 	}
 
-	updateEvent(_id, name, description, location, time, date, image) {
-		return this.authenticatedCall("put", `${url}${_id}`, {
+	updateEvent(_id, name, description, location, time, date, image, username) {
+		return this.authenticatedCall("put", `${url}/${_id}`, {
 			name,
 			description,
 			location,
 			time,
 			date,
 			image,
+			username,
 		});
 	}
 }

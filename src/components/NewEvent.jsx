@@ -55,10 +55,9 @@ const NewEvent = (props) => {
 		return newDate.toDateString();
 	};
 
-	const submitHandler = async (event) => {
+	const submitHandler = async () => {
 		let username = (await props.client.getUserByToken(props.token)).data[0]
 			.username;
-		console.log(username);
 		try {
 			await props.client.addEvent(
 				eventDetails.name,

@@ -12,6 +12,7 @@ const Login = (props) => {
 	const submitHandler = async (event) => {
 		event.preventDefault();
 		try {
+			console.log(loginDetails);
 			const res = await props.client.login(
 				loginDetails.username,
 				loginDetails.password
