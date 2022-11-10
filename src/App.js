@@ -24,7 +24,7 @@ function App() {
 				element={
 					<div className="App">
 						<Header token={token} />
-						<EventsList client={client} />
+						<EventsList client={client} token={token} />
 					</div>
 				}
 			/>

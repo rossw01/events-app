@@ -11,7 +11,6 @@ export class ApiClient {
 
 	// Handles calls once Token is generated from login function
 	authenticatedCall(method, url, data) {
-		console.log(method, url, data);
 		return axios({
 			method,
 			url,
@@ -24,9 +23,14 @@ export class ApiClient {
 				console.log(error);
 				return Promise.reject();
 			} else {
-				throw error;
+				return Promise.resolve();
 			}
 		});
+	}
+
+	// Differences from original code start here
+	getEvents() {
+		return this.authenticatedCall("get", url);
 	}
 
 	async login(username, password) {
@@ -40,11 +44,6 @@ export class ApiClient {
 		}).catch((error) => {
 			throw error;
 		});
-	}
-
-	// Differences from original code start here
-	getEvents() {
-		return this.authenticatedCall("get", url);
 	}
 
 	// Gets 1 even based on location parameter
