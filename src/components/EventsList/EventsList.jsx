@@ -1,129 +1,53 @@
-import React, { useState } from "react";
-import events from "../../events";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Event from "./Event";
 import "./EventsList.css";
 
 const EventsList = (props) => {
-	const [formValues, changeFormValues] = useState({
-		// Make sure postId isn't getting double incremented
-		name: "",
-		description: "",
-		location: "",
-		date: "",
-		time: "",
-		image: "",
-	});
+	//
+	// console.log(props.client);
+	// console.log(events);
 
-	const handleChange = (event) => {
-		let fieldValue = event.target.value;
-		let fieldName = event.target.name;
-		const newState = { ...formValues };
+	const [events, setEvents] = useState(undefined);
 
-		newState[fieldName] = fieldValue;
-		changeFormValues(newState);
-	};
-
-	const submitHandler = async (event) => {
-		event.preventDefault();
-		let result;
-		if (formValues) {
-			// TODO: is this await needed???
-			result = await props.client.addEvent(
-				formValues.name,
-				formValues.description,
-				formValues.location,
-				formValues.date,
-				formValues.time,
-				formValues.image
-			);
-		} else {
-			result = undefined;
-		}
-		console.log(result);
-		result
-			.then(() => {
-				buildEvents();
-			})
-			.catch(() => {
-				alert("Error occured");
-			});
-	};
+	useEffect(() => {
+		const callApi = async () => {
+			const data = (await props.client.getEvents()).data;
+			setEvents(data);
+		};
+		callApi();
+	}, [props.client]);
 
 	const buildEvents = () => {
-		let existingEvents = events.map((event, i) => {
-			return (
-				<Event
-					key={i}
-					name={event.name}
-					description={event.description}
-					location={event.location}
-					date={event.date}
-					time={event.time}
-					image={event.image}
-					id={event._id}
-				/>
-			);
-		});
+		console.log(events);
+		let existingEvents = events
+			?.sort((a, b) =>
+				new Date(Date.parse(a.date)).getTime() >
+				new Date(Date.parse(b.date)).getTime()
+					? 1
+					: -1
+			)
+			.map((event, i) => {
+				return (
+					<Event
+						key={i}
+						name={event.name}
+						description={event.description}
+						location={event.location}
+						date={event.date}
+						time={event.time}
+						image={event.image}
+						id={event._id}
+					/>
+				);
+			});
 		return existingEvents;
 	};
 
 	return (
 		<>
 			<h1 className="title">🎊 Upcoming Events:</h1>
-			<div className="fb-row event-view">
-				{buildEvents()}
-				<form onSubmit={(event) => submitHandler(event)}>
-					<label>
-						name:
-						<input
-							type="text"
-							name="name"
-							onChange={(event) => handleChange(event)}
-						/>
-					</label>
-					<label>
-						description:
-						<input
-							type="text"
-							name="description"
-							onChange={(event) => handleChange(event)}
-						/>
-					</label>
-					<label>
-						location:
-						<input
-							type="text"
-							name="location"
-							onChange={(event) => handleChange(event)}
-						/>
-					</label>
-					<label>
-						date:
-						<input
-							type="text"
-							name="date"
-							onChange={(event) => handleChange(event)}
-						/>
-					</label>
-					<label>
-						time:
-						<input
-							type="text"
-							name="time"
-							onChange={(event) => handleChange(event)}
-						/>
-					</label>
-					<label>
-						image:
-						<input
-							type="text"
-							name="image"
-							onChange={(event) => handleChange(event)}
-						/>
-					</label>
-					<button type="submit">Submit</button>
-				</form>
-			</div>
+			<div className="fb-row event-view">{buildEvents()}</div>
 		</>
 	);
 };
