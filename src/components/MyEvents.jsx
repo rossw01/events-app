@@ -10,6 +10,25 @@ const MyEvents = (props) => {
 	const [events, setEvents] = useState(undefined);
 	const [username, setUsername] = useState(undefined);
 	const [selected, setSelected] = useState(undefined);
+	const [selectedDetails, setSelectedDetails] = useState({
+		_id: "",
+		name: "",
+		description: "",
+		location: "",
+		time: "",
+		date: "",
+		image: "",
+		username: "",
+	});
+
+	const [formValues, setFormValues] = useState({
+		name: "",
+		description: "",
+		location: "",
+		time: "",
+		date: "",
+		image: "",
+	});
 
 	useEffect(() => {
 		const callApi = async () => {
@@ -39,6 +58,16 @@ const MyEvents = (props) => {
 						key={i}
 						onClick={() => {
 							setSelected(i);
+							setSelectedDetails({
+								_id: event._id,
+								name: event.name,
+								description: event.description,
+								location: event.location,
+								date: event.date,
+								time: event.time,
+								image: event.image,
+								username: event.username,
+							});
 							console.log(i, selected, i === selected);
 						}}
 						className={`${i === selected ? "card-selected" : ""}`}
@@ -62,6 +91,48 @@ const MyEvents = (props) => {
 		return existingEvents;
 	};
 
+	const checkFieldUpdated = (formValue, originalDetail) => {
+		// Check to see if the user inputted anything in the form, if not, return original value of Event prop
+		return formValue.length > 0 ? formValue : originalDetail;
+	};
+
+	const submitHandler = async () => {
+		console.log(selectedDetails, formValues);
+		console.log(username);
+		//_id, name, description, location, time, date, image, user
+		try {
+			await props.client.updateEvent(
+				selectedDetails._id,
+				checkFieldUpdated(formValues.name, selectedDetails.name),
+				checkFieldUpdated(formValues.description, selectedDetails.description),
+				checkFieldUpdated(formValues.location, selectedDetails.location),
+				checkFieldUpdated(formValues.time, selectedDetails.time),
+				checkFieldUpdated(formValues.date, selectedDetails.date),
+				checkFieldUpdated(formValues.image, selectedDetails.image),
+				username
+			);
+			console.log("Updated Event successfully!");
+			// TODO: Create Toastr notification
+		} catch (e) {
+			alert("Failed to update Event.");
+			console.log(e.message);
+		}
+		return;
+	};
+
+	const handleChange = (event) => {
+		let fieldValue = event.target.value;
+		let fieldName = event.target.name;
+		const newState = { ...formValues };
+		newState[fieldName] = fieldValue;
+		setFormValues(newState);
+	};
+
+	const deleteSelected = async () => {
+		console.log(selectedDetails._id);
+		await props.client.removeEvent(selectedDetails._id);
+	};
+
 	return (
 		<>
 			<h2>My Events:</h2>
@@ -75,6 +146,71 @@ const MyEvents = (props) => {
 				)} */}
 				{buildEvents()}
 			</div>
+			<div className="fb-col">
+				{/* Use same styles as NewEvent to save time */}
+				<label>
+					Name:
+					<input
+						type="text"
+						name="name"
+						onChange={(event) => handleChange(event)}
+					></input>
+				</label>
+				<label>
+					Description:
+					<textarea
+						type="text"
+						name="description"
+						onChange={(event) => handleChange(event)}
+					></textarea>
+				</label>
+				<label>
+					Location:
+					<input
+						type="text"
+						name="location"
+						onChange={(event) => handleChange(event)}
+					></input>
+				</label>
+				<label>
+					Date:
+					<input
+						type="date"
+						name="date"
+						onChange={(event) => handleChange(event)}
+					></input>
+				</label>
+				<label>
+					Time:
+					<input
+						type="text"
+						name="time"
+						onChange={(event) => handleChange(event)}
+					></input>
+				</label>
+				<label>
+					image:
+					<input
+						type="url"
+						name="image"
+						onChange={(event) => handleChange(event)}
+					></input>
+				</label>
+				<button
+					type="submit"
+					style={{ width: "100px" }}
+					onClick={() => submitHandler()}
+					disabled={selected === undefined}
+				>
+					Submit
+				</button>
+			</div>
+			<button
+				disabled={selected === undefined}
+				onClick={() => deleteSelected()}
+			>
+				Delete Event
+			</button>
 		</>
 	);
 };
