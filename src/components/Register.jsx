@@ -37,24 +37,31 @@ const Register = (props) => {
 	};
 
 	return (
-		<div>
+		<div className="fb-col centered">
+			<h2 style={{ paddingBottom: "1rem" }}>Create a new account:</h2>
 			<label>
-				Username:
+				Username:<>&nbsp;</>
 				<input
 					type="text"
 					name="username"
 					onChange={(event) => setUsername(event.target.value)}
+					className="big-searchbar"
 				></input>
 			</label>
 			<label>
-				Username:
+				Username:<>&nbsp;</>
 				<input
 					type="text"
 					name="password"
 					onChange={(event) => setPassword(event.target.value)}
+					className="big-searchbar"
 				></input>
 			</label>
-			<button type="submit" onClick={() => submitHandler()}>
+			<button
+				type="submit"
+				className="header-btn register"
+				onClick={() => submitHandler()}
+			>
 				Submit
 			</button>
 		</div>
