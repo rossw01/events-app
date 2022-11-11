@@ -63,7 +63,7 @@ const Login = (props) => {
 				<label>
 					Password:<>&nbsp;</>
 					<input
-						type="text"
+						type="password"
 						name="password"
 						className="big-searchbar"
 						onChange={(event) => handleChange(event)}

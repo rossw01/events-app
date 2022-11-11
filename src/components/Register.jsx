@@ -51,7 +51,7 @@ const Register = (props) => {
 			<label>
 				Username:<>&nbsp;</>
 				<input
-					type="text"
+					type="password"
 					name="password"
 					onChange={(event) => setPassword(event.target.value)}
 					className="big-searchbar"
