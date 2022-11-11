@@ -7,6 +7,7 @@
 .fb-row {
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 }
 
 .fb-col {
@@ -19,6 +20,21 @@
 	flex-wrap: wrap;
 	gap: 1rem;
 	margin-inline: 1.5rem;
+}
+
+.big-searchbar {
+	font-size: 18px;
+	margin-bottom: 1rem;
+	height: 2.5rem;
+	width: 30rem;
+	border-radius: 20px;
+	padding-inline: 1rem;
+	border: 2px solid #00a5dc71;
+}
+
+.big-searchbar:focus {
+	outline: none;
+	border: 2px solid #00a5dc;
 }
 
 @media screen and (max-width: 600px) {

@@ -30,7 +30,7 @@ function App() {
 							style={{
 								display: "flex",
 								justifyContent: "center",
-								margin: "0 1rem 2rem 1rem",
+								margin: "0 1rem 0.8rem 1rem",
 							}}
 						>
 							🎊 Upcoming Events:
