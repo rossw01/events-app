@@ -1,7 +1,7 @@
 Primary:
-TODO: Fix only being able to log into first account ✅ 
-TODO: Allow for editing of Event                    😨 Need help ✅ It literally fixed itself lol
-TODO: Allow for Deletion of Event
+TODO: Fix only being able to log into first account                   ✅ 
+TODO: Allow for editing of Event                                      🚩 Need help ✅ It literally fixed itself lol
+TODO: Allow for Deletion of Event                                     ✅ A warning would be good probably
 TODO: Styling on Login
 TODO: Styling on Register
 TODO: Styling on My Events (+ responsive)
@@ -11,7 +11,7 @@ TODO: Additional checks on event creation
 
 Secondary:
 TODO: Get rid of expired events (Events List and My Events)
-TODO: Try fix logout button
-TODO: Try display message when there is nothing to display in the My Events page
+TODO: Try fix logout button                                           🚩 Need help, we are clueless
+TODO: display message when there is nothing to display on MyEvents    🚩 Probably need help
 TODO: Change global fonts
 TODO: Plan project demonstration

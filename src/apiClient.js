@@ -78,7 +78,7 @@ export class ApiClient {
 	}
 
 	removeEvent(_id) {
-		return this.authenticatedCall("delete", `${url}${_id}`);
+		return this.authenticatedCall("delete", `${url}/${_id}`);
 	}
 
 	updateEvent(_id, name, description, location, time, date, image, username) {
