@@ -46,24 +46,32 @@ const Login = (props) => {
 
 	return (
 		<div>
-			<form onSubmit={(event) => submitHandler(event)}>
+			<form
+				onSubmit={(event) => submitHandler(event)}
+				className="fb-col centered"
+				style={{ height: "auto" }}
+			>
 				<label>
-					Username:
+					Username:<>&nbsp;</>
 					<input
 						type="text"
 						name="username"
+						className="big-searchbar"
 						onChange={(event) => handleChange(event)}
 					/>
 				</label>
 				<label>
-					Password:
+					Password:<>&nbsp;</>
 					<input
 						type="text"
 						name="password"
+						className="big-searchbar"
 						onChange={(event) => handleChange(event)}
 					/>
 				</label>
-				<button type="submit">Log in</button>
+				<button type="submit" className="header-btn profile">
+					Log in
+				</button>
 			</form>
 		</div>
 	);

@@ -27,7 +27,7 @@
 	margin-bottom: 1rem;
 	height: 2.5rem;
 	width: 30rem;
-	border-radius: 20px;
+	border-radius: 30px;
 	padding-inline: 1rem;
 	border: 2px solid #00a5dc71;
 }
@@ -43,5 +43,9 @@
 	}
 	.fb-row {
 		margin-inline: 0;
+	}
+	.big-searchbar {
+		width: 100%;
+		margin-inline: 1vw;
 	}
 }

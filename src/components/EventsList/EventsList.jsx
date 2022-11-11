@@ -41,6 +41,7 @@ const EventsList = (props) => {
 						date={event.date}
 						time={event.time}
 						image={event.image}
+						username={event.username}
 						id={event._id}
 					/>
 				);
@@ -51,12 +52,10 @@ const EventsList = (props) => {
 	return (
 		<>
 			<div className="fb-row">
-				<form>
-					<input
-						onChange={(event) => setSearch(event.target.value)}
-						className="big-searchbar"
-					/>
-				</form>
+				<input
+					onChange={(event) => setSearch(event.target.value)}
+					className="big-searchbar"
+				/>
 			</div>
 			<div className="fb-row event-view">{buildEvents()}</div>
 		</>
