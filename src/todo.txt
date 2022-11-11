@@ -1,19 +1,20 @@
 Primary:
-TODO: Fix only being able to log into first account                   ✅ 
-TODO: Allow for editing of Event                                      🚩 Need help ✅ It literally fixed itself lol
-TODO: Allow for Deletion of Event                                     ✅ A warning would be good probably
-TODO: Search bar styling on EventsList page                           ✅ ⚠️ Needs Responsive changes (set to width 100%)
-TODO: Styling on Login
-TODO: Styling on Register
-TODO: Styling on My Events (+ responsive)
-TODO: Additional checks on event creation (dont forget max chars!)
-TODO: Display Event creator on card                                   ✅
-
+TODO:  Fix only being able to log into first account                   ✅ 
+TODO:  Allow for editing of Event                                      🚩 Need help ✅ It literally fixed itself lol
+TODO:  Allow for Deletion of Event                                     ✅ A warning would be good probably
+TODO:  Search bar styling on EventsList page                           ✅ ⚠️ Needs Responsive changes ✅ Done
+TODO:  Styling on Login                                                ✅ Maybe some responsive tweaks
+TODO:  Styling on Register                                             ✅  
+TODO:  Styling on My Events (+ responsive)
+TODO:  Style new event
+TODO:  Additional checks on event creation (dont forget max chars!)
+TODO:  Display Event creator on card                                   ✅
+TODO:  Refresh page on delete on MyEvents
+FIXME: Can only create an event once per login?
 
 
 Secondary:
-TODO: Get rid of expired events (Events List and My Events)                                          -- 45m
-TODO: Try fix logout button                                           🚩 Need help, we are clueless -- 1h
-TODO: display message when there is nothing to display on MyEvents    🚩 Probably need help
-TODO: Change global fonts                                                                            -- 15m
-TODO: Plan project demonstration
+TODO:  Try fix logout button                                           🚩 Need help, we are clueless -- 1h
+TODO:  display message when there is nothing to display on MyEvents    🚩 Probably need help
+TODO:  Change global fonts                                                                            -- 15m
+TODO:  Plan project demonstration

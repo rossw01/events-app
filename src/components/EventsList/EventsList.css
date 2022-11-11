@@ -37,6 +37,30 @@
 	border: 2px solid #00a5dc;
 }
 
+.fields {
+	margin: 1rem;
+	display: flex;
+	justify-content: end;
+	align-items: flex-end;
+	gap: 0.5rem;
+}
+
+.field {
+	display: flex;
+	flex-direction: row;
+	padding-inline: 1rem;
+	font-size: 16px;
+	height: 1.5rem;
+	border-radius: 20px;
+	border: 1px solid #00a5dc71;
+	width: 20rem;
+}
+
+.field:focus {
+	outline: none;
+	border: 2px solid #00a5dc;
+}
+
 @media screen and (max-width: 600px) {
 	.title {
 		margin-bottom: 1.5rem;

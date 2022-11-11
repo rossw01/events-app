@@ -5,6 +5,8 @@ import "./Header.css";
 
 const Header = (props) => {
 	const logout = (changeToken) => {
+		// removes token from local storage
+		// removes the token from app.js
 		window.localStorage.removeItem("token");
 		changeToken(undefined);
 		// TODO: Nav back to root page
@@ -19,7 +21,9 @@ const Header = (props) => {
 					alt={"event it logo"}
 				/>
 			</Link>
+			{/* if there is a token in state */}
 			{props.token ? (
+				// if true
 				<div className="buttons">
 					<Link to="/new" className="no-td">
 						<button className="header-btn new">
@@ -30,7 +34,7 @@ const Header = (props) => {
 					<Link to="/my-events" className="no-td">
 						<button className="header-btn profile">
 							<FaUser />
-							<span className="header-button-text">My Profile</span>
+							<span className="header-button-text">My Events</span>
 						</button>
 					</Link>
 					<Link className="no-td">
@@ -44,6 +48,7 @@ const Header = (props) => {
 					</Link>
 				</div>
 			) : (
+				// ekse if condition is false
 				<div className="buttons">
 					<Link to="/login" className="no-td">
 						<button className="header-btn profile">Login</button>

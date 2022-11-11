@@ -1,26 +1,6 @@
-/*
-how i broke git repo
-I commited changes to NewEvent.jsx
-pulled to main
-
-i noticed I'd not pulled changes to Header.jsx to main
-I pulled
-
-then did checkout main to make sure things were working
-
-Local files were set to 1st commit, repo was set to 1st commit
-
-I cloned newest branch, header was updated and NewEvent was updated (looked perfect on my end)
-
-I created new issue to try fix everything and get main back to how it was on my local machine
-Main remained same as 1st commit, and new branch remained same as first commit
-
-didnt work
-wtf am i doing lol
-
-*/
-
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import Event from "./EventsList/Event";
 import "./NewEvent.css";
 
@@ -81,11 +61,18 @@ const NewEvent = (props) => {
 		let fieldName = event.target.name;
 
 		if (fieldName === "date") {
+			// this handles parsing dates/prevents past dates
 			fieldValue = dateFixer(fieldValue);
 		}
+		// duplicate state
 		const newState = { ...eventDetails };
 
 		// When the user backspaces their input, reset to default value
+
+		// if(fieldValue === ""){
+		// 	newState[fieldName] = defaultObj[fieldName]
+		// }
+
 		if (fieldValue === "") {
 			switch (fieldName) {
 				case "name":
@@ -117,60 +104,81 @@ const NewEvent = (props) => {
 	return (
 		<div className="fb-row add-event">
 			<div>
-				<form className="fb-col add-event-form">
-					<h2>Lets create your new event!</h2>
-					<label>
-						Event name:
-						<input
-							name="name"
-							onChange={(event) => handleChange(event)}
-						></input>
-					</label>
-					<label>
-						Event Description:
-						<textarea
-							name="description"
-							onChange={(event) => handleChange(event)}
-						></textarea>
-					</label>
-					<label>
-						Event Location:
-						<input
-							name="location"
-							onChange={(event) => handleChange(event)}
-						></input>
-					</label>
-					<label>
-						Event time:
-						<input
-							name="time"
-							onChange={(event) => handleChange(event)}
-						></input>
-					</label>
-					<label>
-						Event date:
-						<input
-							type="date"
-							name="date"
-							onChange={(event) => handleChange(event)}
-						></input>
-					</label>
-					<label>
-						Event image:
-						<input
-							type="url"
-							name="image"
-							onChange={(event) => handleChange(event)}
-						></input>
-					</label>
-					<button type="submit" onClick={() => submitHandler()}>
-						Submit
-					</button>
-				</form>
+				<Form className="fb-col add-event-form">
+					{/* <Form.Group className="mb-3" controlId="formBasicEmail">
+						<Form.Label>Email address</Form.Label>
+						<Form.Control type="email" placeholder="Enter email" />
+						<Form.Text className="text-muted">
+							We'll never share your email with anyone else.
+						</Form.Text>
+					</Form.Group> */}
+
+					<h2 style={{ margin: "1rem" }}>Lets create your new event!</h2>
+
+					<div className="fb-col fields">
+						<form>
+							Event name:
+							<input
+								name="name"
+								className="field"
+								onChange={(event) => handleChange(event)}
+							></input>
+						</form>
+						<label>
+							Event Description:
+							<textarea
+								name="description"
+								className="field"
+								onChange={(event) => handleChange(event)}
+							></textarea>
+						</label>
+						<label>
+							Event Location:
+							<input
+								name="location"
+								className="field"
+								onChange={(event) => handleChange(event)}
+							></input>
+						</label>
+						<label>
+							Event time:
+							<input
+								name="time"
+								className="field"
+								onChange={(event) => handleChange(event)}
+							></input>
+						</label>
+						<label>
+							Event date:
+							<input
+								type="date"
+								name="date"
+								className="field"
+								onChange={(event) => handleChange(event)}
+							></input>
+						</label>
+						<label>
+							Event image:
+							<input
+								type="url"
+								name="image"
+								className="field"
+								onChange={(event) => handleChange(event)}
+							></input>
+						</label>
+						<button
+							type="submit"
+							className="header-btn profile"
+							onClick={() => submitHandler()}
+						>
+							Submit
+						</button>
+					</div>
+				</Form>
 			</div>
 			{/* Could try using a ternary to check if state is left blank */}
 			<div className="fb-col">
-				<h2>Event Preview:</h2>
+				<h2 style={{ margin: "1rem" }}>Event Preview:</h2>
 				<Event
 					name={eventDetails.name}
 					description={eventDetails.description}

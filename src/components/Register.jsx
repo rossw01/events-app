@@ -8,6 +8,7 @@ const Register = (props) => {
 	const navigateTo = useNavigate();
 
 	const checkForms = (forms) => {
+		// returns true if username and password are valid
 		if (forms.username.length < 5) {
 			alert("Your username must be at least 5 characters in length");
 			return false;
@@ -23,12 +24,15 @@ const Register = (props) => {
 	};
 
 	const submitHandler = async () => {
+		// passwword//username are invalid, return false
 		if (!checkForms({ username: username, password: password })) {
 			return false;
 		}
 		try {
 			await props.client.addUser(username, password);
 			alert("Account created! You may now login");
+			// iff successful on signup
+			// programatically redirect to login
 			navigateTo("/login");
 		} catch (e) {
 			alert("That username you chose already exists exists already");
@@ -49,7 +53,7 @@ const Register = (props) => {
 				></input>
 			</label>
 			<label>
-				Username:<>&nbsp;</>
+				Password:<>&nbsp;</>
 				<input
 					type="password"
 					name="password"
