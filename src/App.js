@@ -1,3 +1,4 @@
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ApiClient } from "./apiClient";
@@ -14,6 +15,8 @@ function App() {
 	const client = new ApiClient();
 
 	const loggedIn = (token) => {
+		// stores the token from state
+		// into local storage
 		window.localStorage.setItem("token", token);
 		changeToken(token);
 	};

@@ -3,10 +3,6 @@ import Event from "./EventsList/Event";
 import "./EventsList/EventsList.css";
 
 const MyEvents = (props) => {
-	//
-	// console.log(props.client);
-	// console.log(events);
-
 	const [events, setEvents] = useState(undefined);
 	const [username, setUsername] = useState(undefined);
 	const [selected, setSelected] = useState(undefined);
@@ -20,7 +16,6 @@ const MyEvents = (props) => {
 		image: "",
 		username: "",
 	});
-
 	const [formValues, setFormValues] = useState({
 		name: "",
 		description: "",
@@ -32,10 +27,16 @@ const MyEvents = (props) => {
 
 	useEffect(() => {
 		const callApi = async () => {
+			// get all the events
+			// Needs refactoring to get by username
+			// const data = (await props.client.getEventsByUsernam()).data;
 			const data = (await props.client.getEvents()).data;
+			// store all the events in state
 			setEvents(data);
+			// gets Username
 			const username = (await props.client.getUserByToken(props.token)).data[0]
 				.username;
+			// stores the usernmae in state
 			setUsername(username);
 		};
 		callApi();
@@ -57,6 +58,9 @@ const MyEvents = (props) => {
 					<div
 						key={i}
 						onClick={() => {
+							// selects the post in state
+							// sets index of the selected post in state
+							// sets the details of the selected in state
 							setSelected(i);
 							setSelectedDetails({
 								_id: event._id,
@@ -92,13 +96,15 @@ const MyEvents = (props) => {
 	};
 
 	const checkFieldUpdated = (formValue, originalDetail) => {
+		// either return the new value to be inserted
+		// or if there is none, rteturn the old value
 		// Check to see if the user inputted anything in the form, if not, return original value of Event prop
 		return formValue.length > 0 ? formValue : originalDetail;
 	};
 
 	const submitHandler = async () => {
-		console.log(selectedDetails, formValues);
-		console.log(username);
+		// console.log(selectedDetails, formValues);
+		// console.log(username);
 		//_id, name, description, location, time, date, image, user
 		try {
 			await props.client.updateEvent(
@@ -121,10 +127,14 @@ const MyEvents = (props) => {
 	};
 
 	const handleChange = (event) => {
+		// when the user enters some new values in state
 		let fieldValue = event.target.value;
 		let fieldName = event.target.name;
+		// make a duplicate of the form object in state
 		const newState = { ...formValues };
+		// mutate it to ahve the new values
 		newState[fieldName] = fieldValue;
+		// replace state with updated version
 		setFormValues(newState);
 	};
 
@@ -135,7 +145,9 @@ const MyEvents = (props) => {
 
 	return (
 		<>
-			<h2>My Events:</h2>
+			<h2 className="fb-row centered" style={{ margin: "1rem" }}>
+				My Events:
+			</h2>
 			<div className="fb-row event-view">
 				{/* {buildEvents() > 0 ? (
 					buildEvents()
@@ -146,71 +158,87 @@ const MyEvents = (props) => {
 				)} */}
 				{buildEvents()}
 			</div>
-			<div className="fb-col">
+			<div className="fb-col centered">
 				{/* Use same styles as NewEvent to save time */}
-				<label>
-					Name:
-					<input
-						type="text"
-						name="name"
-						onChange={(event) => handleChange(event)}
-					></input>
-				</label>
-				<label>
-					Description:
-					<textarea
-						type="text"
-						name="description"
-						onChange={(event) => handleChange(event)}
-					></textarea>
-				</label>
-				<label>
-					Location:
-					<input
-						type="text"
-						name="location"
-						onChange={(event) => handleChange(event)}
-					></input>
-				</label>
-				<label>
-					Date:
-					<input
-						type="date"
-						name="date"
-						onChange={(event) => handleChange(event)}
-					></input>
-				</label>
-				<label>
-					Time:
-					<input
-						type="text"
-						name="time"
-						onChange={(event) => handleChange(event)}
-					></input>
-				</label>
-				<label>
-					image:
-					<input
-						type="url"
-						name="image"
-						onChange={(event) => handleChange(event)}
-					></input>
-				</label>
+				<br />
+				<i style={{ margin: "1rem", color: "#aaa" }}>
+					You may leave any of these fields blank, the original values will be
+					used instead
+				</i>
+				<div className="fb-col fields">
+					<label>
+						Name:
+						<input
+							type="text"
+							name="name"
+							className="field"
+							onChange={(event) => handleChange(event)}
+						></input>
+					</label>
+					<label>
+						Description:
+						<textarea
+							type="text"
+							name="description"
+							className="field"
+							onChange={(event) => handleChange(event)}
+						></textarea>
+					</label>
+					<label>
+						Location:
+						<input
+							type="text"
+							name="location"
+							className="field"
+							onChange={(event) => handleChange(event)}
+						></input>
+					</label>
+					<label>
+						Date:
+						<input
+							type="date"
+							name="date"
+							className="field"
+							onChange={(event) => handleChange(event)}
+						></input>
+					</label>
+					<label>
+						Time:
+						<input
+							type="text"
+							name="time"
+							className="field"
+							onChange={(event) => handleChange(event)}
+						></input>
+					</label>
+					<label>
+						image:
+						<input
+							type="url"
+							name="image"
+							className="field"
+							onChange={(event) => handleChange(event)}
+						></input>
+					</label>
+				</div>
 				<button
 					type="submit"
-					style={{ width: "100px" }}
 					onClick={() => submitHandler()}
 					disabled={selected === undefined}
+					className="header-btn profile"
+					style={{ marginBottom: "1rem" }}
 				>
 					Submit
 				</button>
+				<button
+					disabled={selected === undefined}
+					onClick={() => deleteSelected()}
+					className="header-btn logout"
+					style={{ marginBottom: "1rem" }}
+				>
+					Delete Event
+				</button>
 			</div>
-			<button
-				disabled={selected === undefined}
-				onClick={() => deleteSelected()}
-			>
-				Delete Event
-			</button>
 		</>
 	);
 };

@@ -3,23 +3,30 @@ import Event from "./Event";
 import "./EventsList.css";
 
 const EventsList = (props) => {
-	//
-	// console.log(props.client);
-	// console.log(events);
-
 	const [events, setEvents] = useState(undefined);
 	const [search, setSearch] = useState("");
 
+	// It gets all the events when the page loads for the first time
+	// stores them all in state
 	useEffect(() => {
+		// useEffect function runs when the client is loaded for the first time
+		// when the apiCLient is created
 		const callApi = async () => {
+			// send a request to get all events
 			const data = (await props.client.getEvents()).data;
+			// store the response in state(events)
 			setEvents(data);
 		};
+		//
 		callApi();
+		//
 	}, [props.client]);
 
 	const buildEvents = () => {
+		// generate the html elements
+		// if there are events
 		let existingEvents = events
+			// sort by date
 			?.sort((a, b) =>
 				new Date(Date.parse(a.date)).getTime() >
 				new Date(Date.parse(b.date)).getTime()
@@ -27,6 +34,7 @@ const EventsList = (props) => {
 					: -1
 			)
 			.filter((event) => {
+				// filter out posts that do not have the search term anywhere in this
 				return [event.name, event.location, event.date, event.description]
 					.join(" ")
 					.includes(search);
@@ -53,11 +61,15 @@ const EventsList = (props) => {
 		<>
 			<div className="fb-row">
 				<input
+					// puts the user input into search field into state
 					onChange={(event) => setSearch(event.target.value)}
 					className="big-searchbar"
 				/>
 			</div>
-			<div className="fb-row event-view">{buildEvents()}</div>
+			<div className="fb-row event-view" style={{ marginTop: "1rem" }}>
+				{/* calls the function that generates all of our cards from the map */}
+				{buildEvents()}
+			</div>
 		</>
 	);
 };
