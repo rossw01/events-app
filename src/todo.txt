@@ -2,12 +2,12 @@ Primary:
 TODO: Fix only being able to log into first account                   ✅ 
 TODO: Allow for editing of Event                                      🚩 Need help ✅ It literally fixed itself lol
 TODO: Allow for Deletion of Event                                     ✅ A warning would be good probably
-TODO: Search bar styling on EventsList page
+TODO: Search bar styling on EventsList page                           ✅ ⚠️ Needs Responsive changes (set to width 100%)
 TODO: Styling on Login
 TODO: Styling on Register
 TODO: Styling on My Events (+ responsive)
-TODO: Additional checks on event creation
-TODO: Display Event creator on card
+TODO: Additional checks on event creation (dont forget max chars!)
+TODO: Display Event creator on card                                   ✅
 
 
 

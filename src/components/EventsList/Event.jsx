@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser } from "react-icons/fa";
 import "./Event.css";
 
 const Event = (props) => {
@@ -22,6 +22,10 @@ const Event = (props) => {
 				<div className="card-info-item">
 					<FaCalendarAlt className="card-info-icon" />
 					<span className="card-info-text">{props.date}</span>
+				</div>
+				<div className="card-info-item">
+					<FaUser className="card-info-icon" />
+					<span className="card-info-text">{props.username}</span>
 				</div>
 			</div>
 		</div>

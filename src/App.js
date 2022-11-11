@@ -31,6 +31,7 @@ function App() {
 								display: "flex",
 								justifyContent: "center",
 								margin: "0 1rem 0.8rem 1rem",
+								textAlign: "center",
 							}}
 						>
 							🎊 Upcoming Events:
