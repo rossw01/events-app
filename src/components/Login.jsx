@@ -19,7 +19,6 @@ const Login = (props) => {
 			);
 			// alert("Successfimage.pngul login");
 			props.loggedIn(res.data.token);
-			alert("Correct Login");
 			navigateTo("/");
 
 			// let history = useHistory();
@@ -51,6 +50,7 @@ const Login = (props) => {
 				className="fb-col centered"
 				style={{ height: "auto" }}
 			>
+				<h2 style={{ paddingBottom: "1rem" }}>Login to your account:</h2>
 				<label>
 					Username:<>&nbsp;</>
 					<input
