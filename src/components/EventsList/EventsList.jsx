@@ -27,7 +27,9 @@ const EventsList = (props) => {
 					: -1
 			)
 			.filter((event) => {
-				return event.name.includes(search) || event.location.includes(search);
+				return [event.name, event.location, event.date, event.description]
+					.join(" ")
+					.includes(search);
 			})
 			.map((event, i) => {
 				return (
